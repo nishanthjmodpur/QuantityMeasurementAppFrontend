@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quantity Measurer</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div id="header"></div>
+  <div id="app"></div>
+
+  <script>
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+      });
+
+    fetch("quantityapp.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("app").innerHTML = data;
+      });
+  </script>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>

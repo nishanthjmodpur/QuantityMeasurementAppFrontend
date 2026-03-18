@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>App</title>
+</head>
+<body>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="card" onclick="selectCategory('length')">📏 Length</div>
+      <div class="card" onclick="selectCategory('weight')">⚖️ Weight</div>
+      <div class="card" onclick="selectCategory('temp')">🌡️ Temperature</div>
+      <div class="card" onclick="selectCategory('volume')">🧪 Volume</div>
+    </aside>
+
+    <section class="container">
+      <h2 id="title">Unit Converter</h2>
+
+      <input type="number" id="inputValue" placeholder="Enter value">
+
+      <select id="fromUnit"></select>
+      <select id="toUnit"></select>
+
+      <button onclick="convert()">Convert</button>
+
+      <h3 id="result">Result: --</h3>
+    </section>
+
+  </div>
+
+</body>
+</html>
