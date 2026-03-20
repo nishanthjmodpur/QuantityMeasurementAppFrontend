@@ -6,29 +6,54 @@
 </head>
 <body>
 
-  <div class="layout">
+  <section class="container">
 
-    <aside class="sidebar">
-      <div class="card" onclick="selectCategory('length')">📏 Length</div>
-      <div class="card" onclick="selectCategory('weight')">⚖️ Weight</div>
-      <div class="card" onclick="selectCategory('temp')">🌡️ Temperature</div>
-      <div class="card" onclick="selectCategory('volume')">🧪 Volume</div>
-    </aside>
+    <div class="section-block">
+      <h2 class="section-title">CHOOSE TYPE</h2>
+      <div class="type-row">
+        <div class="type-card selected" onclick="selectCategory('length')">
+          <div class="type-icon">📏</div>
+          <div class="type-label">Length</div>
+        </div>
+        <div class="type-card" onclick="selectCategory('weight')">
+          <div class="type-icon">⚖️</div>
+          <div class="type-label">Weight</div>
+        </div>
+        <div class="type-card" onclick="selectCategory('temp')">
+          <div class="type-icon">🌡️</div>
+          <div class="type-label">Temperature</div>
+        </div>
+        <div class="type-card" onclick="selectCategory('volume')">
+          <div class="type-icon">🧪</div>
+          <div class="type-label">Volume</div>
+        </div>
+      </div>
+    </div>
 
-    <section class="container">
-      <h2 id="title">Unit Converter</h2>
+    <div class="section-block">
+      <h2 class="section-title">CHOOSE ACTION</h2>
+      <div class="action-row">
+        <button class="action-btn active">Comparison</button>
+        <button class="action-btn">Conversion</button>
+        <button class="action-btn">Arithmetic</button>
+      </div>
+    </div>
 
-      <input type="number" id="inputValue" placeholder="Enter value">
+    <div class="converter-row">
+      <div class="converter-card">
+        <div class="converter-label">FROM</div>
+        <input type="text" inputmode="numeric" id="inputValue" placeholder="Enter value">
+        <select id="fromUnit"></select>
+      </div>
 
-      <select id="fromUnit"></select>
-      <select id="toUnit"></select>
+      <div class="converter-card">
+        <div class="converter-label">TO</div>
+        <input type="text" id="result" placeholder="Result" readonly>
+        <select id="toUnit"></select>
+      </div>
+    </div>
 
-      <button onclick="convert()">Convert</button>
-
-      <h3 id="result">Result: --</h3>
-    </section>
-
-  </div>
+  </section>
 
 </body>
 </html>
