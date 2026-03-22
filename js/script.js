@@ -1,4 +1,5 @@
 import { getUnits } from "./api.js";
+import { populateDropdown } from "./ui.js";
 
 const state = {
   type: "length",
@@ -54,28 +55,17 @@ function populateUnitSelects(units) {
   if (!fromSelect || !toSelect) {
     return;
   }
-
-  fromSelect.innerHTML = "";
-  toSelect.innerHTML = "";
-
-  units.forEach((unit) => {
-    const fromOption = document.createElement("option");
-    fromOption.value = unit.symbol;
-    fromOption.textContent = `${unit.label} (${unit.symbol})`;
-
-    const toOption = document.createElement("option");
-    toOption.value = unit.symbol;
-    toOption.textContent = `${unit.label} (${unit.symbol})`;
-
-    fromSelect.appendChild(fromOption);
-    toSelect.appendChild(toOption);
-  });
-
+  populateDropdown(fromSelect, units);
+  populateDropdown(toSelect, units);
 
   state.fromUnit = units[0]?.symbol || "";
   state.toUnit = units[1]?.symbol || units[0]?.symbol || "";
-  fromSelect.value = state.fromUnit;
-  toSelect.value = state.toUnit;
+  if (state.fromUnit) {
+    fromSelect.value = state.fromUnit;
+  }
+  if (state.toUnit) {
+    toSelect.value = state.toUnit;
+  }
 }
 
 async function loadUnits(type) {
