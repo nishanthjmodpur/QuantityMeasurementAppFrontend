@@ -1,5 +1,5 @@
 import { getUnits } from "./api.js";
-import { populateDropdown } from "./ui.js";
+import { populateDropdown, setActive } from "./ui.js";
 
 const state = {
   type: "length",
@@ -32,13 +32,6 @@ function clearError() {
   if (banner) {
     banner.remove();
   }
-}
-
-function setActive(elements, index) {
-  elements.forEach((el, i) => {
-    el.classList.toggle("active", i===index);
-    el.classList.toggle("selected", i===index);
-  });
 }
 
 function toggleOperators(show) {
@@ -98,6 +91,7 @@ async function loadHistory() {
 }
 
 function selectCategory(typeText) {
+  const typeRow = document.querySelector(".type-row");
   const cards = Array.from(document.querySelectorAll(".type-card"));
   const index = cards.findIndex((card) => {
     const label = card.querySelector(".type-label")?.textContent?.trim();
@@ -105,13 +99,18 @@ function selectCategory(typeText) {
   });
 
   if (index >= 0) {
-    setActive(cards, index);
+    setActive(typeRow, cards[index], ".type-card");
+    cards.forEach((card, i) => {
+      card.classList.toggle("selected", i === index);
+    });
   }
 
   loadUnits(typeText);
 }
 
 function attachEventListeners() {
+  const typeRow = document.querySelector(".type-row");
+  const actionRow = document.querySelector(".action-row");
   const typeCards = Array.from(document.querySelectorAll(".type-card"));
   const actionButtons = Array.from(document.querySelectorAll(".action-btn"));
   const fromSelect = document.getElementById("fromUnit");
@@ -128,7 +127,7 @@ function attachEventListeners() {
 
   actionButtons.forEach((btn, i) => {
     btn.addEventListener("click", () => {
-      setActive(actionButtons, i);
+      setActive(actionRow, btn, ".action-btn");
       state.action = btn.textContent?.trim() || "Conversion";
       toggleOperators(state.action === "Arithmetic");
     });
@@ -154,15 +153,20 @@ function attachEventListeners() {
 }
 
 function setDefaultActiveButtons() {
+  const typeRow = document.querySelector(".type-row");
+  const actionRow = document.querySelector(".action-row");
   const typeCards = Array.from(document.querySelectorAll(".type-card"));
   const actionButtons = Array.from(document.querySelectorAll(".action-btn"));
 
   if (typeCards.length > 0) {
-    setActive(typeCards, 0);
+    setActive(typeRow, typeCards[0], ".type-card");
+    typeCards.forEach((card, i) => {
+      card.classList.toggle("selected", i === 0);
+    });
   }
 
   if (actionButtons.length > 0) {
-    setActive(actionButtons, 0);
+    setActive(actionRow, actionButtons[0], ".action-btn");
     state.action = actionButtons[0].textContent?.trim() || state.action;
   }
 }
