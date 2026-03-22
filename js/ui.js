@@ -32,3 +32,22 @@ export function setActive(parentEl, clickedEl, childSelector) {
 
   clickedEl.classList.add("active");
 }
+
+export function showResult(value, unitSymbol) {
+  const resultValueEl = document.querySelector("#result-value");
+  const resultUnitEl = document.querySelector("#result-unit");
+  if (!resultValueEl || !resultUnitEl) {
+    return;
+  }
+
+  resultValueEl.textContent = value === null ? "—" : value;
+  resultUnitEl.textContent = unitSymbol || "";
+
+  resultValueEl.classList.add("highlight");
+  resultUnitEl.classList.add("highlight");
+
+  setTimeout(() => {
+    resultValueEl.classList.remove("highlight");
+    resultUnitEl.classList.remove("highlight");
+  }, 1500);
+}
