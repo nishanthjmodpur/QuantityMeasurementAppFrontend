@@ -1,21 +1,4 @@
-// function convert() {
-//   const value = parseFloat(document.getElementById("inputValue").value);
-//   const from = document.getElementById("fromUnit").value;
-//   const to = document.getElementById("toUnit").value;
-
-//   let result = value;
-
-//   if (from === "kg" && to === "g") {
-//     result = value * 1000;
-//   } else if (from === "g" && to === "kg") {
-//     result = value / 1000;
-//   }
-
-//   document.getElementById("result").innerText = "Result: " + result;
-// }
-
-
-const API_URL = "https://api.measurement.azaken.com";
+import { getUnits } from "./api.js";
 
 const state = {
   type: "length",
@@ -99,18 +82,9 @@ function populateUnitSelects(units) {
 async function loadUnits(type) {
   state.type = type;
   try {
-    const response = await fetch(`${API_URL}/units`);
-    if (!response.ok) {
-      throw new Error("Failed to load units");
-    }
-
-    const allUnits = await response.json();
-    const filteredUnits = allUnits.filter(
-      (unit) => unit.type.toLowerCase() == type.toLowerCase()
-    );
-
-    populateUnitSelects(filteredUnits);
-    clearError();
+     const units = await getUnits(type);
+     populateUnitSelects(units);
+     clearError();
   } catch (error) {
     if (error instanceof TypeError) {
       showError("Server unavailable");
@@ -122,7 +96,7 @@ async function loadUnits(type) {
 
 async function loadHistory() {
   try {
-    const response = await fetch(`${API_URL}/history`);
+    const response = await fetch("https://api.measurement.azaken.com/history");
     if (!response.ok) {
       throw new Error("Failed to load history");
     }
