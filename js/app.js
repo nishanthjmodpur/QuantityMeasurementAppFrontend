@@ -136,6 +136,7 @@ function setDefaultActiveButtons() {
 
   if (actionButtons.length > 0) {
     setActive(actionRow, actionButtons[0], ".action-btn");
+    state.action = actionButtons[0].dataset.action || state.action;
   }
 }
 
