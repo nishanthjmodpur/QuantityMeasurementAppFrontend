@@ -78,6 +78,28 @@ function populateUnitSelects(units) {
   toSelect.value = state.toUnit;
 }
 
+function applyConversion(value, convObj) {
+  if (!Number.isFinite(value)) {
+    throw new Error("Invalid number");
+  }
+
+  if (convObj?.from === convObj?.to) {
+    return parseFloat(value.toFixed(6));
+  }
+
+  if (convObj?.factor !== null && convObj?.factor !== undefined) {
+    const result = value * convObj.factor;
+    return parseFloat(result.toFixed(6));
+  }
+
+  try {
+    const expr = convObj.formula.replace(/x/g, String(value));
+    const result = eval(expr);
+    return parseFloat(result.toFixed(6));
+  } catch {
+    throw new Error("Bad formula");
+  }
+}
 
 async function loadUnits(type) {
   state.type = type;
