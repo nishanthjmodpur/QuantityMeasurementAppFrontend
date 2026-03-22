@@ -1,4 +1,5 @@
-const BASE_URL = "https://api.measurement.azaken.com";
+// const BASE_URL = "https://api.measurement.azaken.com";
+const BASE_URL = "http://localhost:3000";
 
 export async function getUnits(type) {
   const res = await fetch(`${BASE_URL}/units?type=${encodeURIComponent(type.toLowerCase())}`);

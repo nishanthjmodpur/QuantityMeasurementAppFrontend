@@ -36,7 +36,13 @@ export function setActive(parentEl, clickedEl, childSelector) {
 export function showResult(value, unitSymbol) {
   const resultValueEl = document.querySelector("#result-value");
   const resultUnitEl = document.querySelector("#result-unit");
+  const resultInputEl = document.querySelector("#result");
+
   if (!resultValueEl || !resultUnitEl) {
+    if (resultInputEl) {
+      const text = value === null ? "—" : `${value}${unitSymbol ? ` ${unitSymbol}` : ""}`;
+      resultInputEl.value = text;
+    }
     return;
   }
 
