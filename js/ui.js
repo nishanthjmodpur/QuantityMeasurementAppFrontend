@@ -51,3 +51,12 @@ export function showResult(value, unitSymbol) {
     resultUnitEl.classList.remove("highlight");
   }, 1500);
 }
+
+export function toggleOperators(show) {
+  const el = document.querySelector("#operator-selector");
+  if (!el) {
+    console.warn("operator selector not found");
+    return;
+  }
+  el.style.display = show ? "flex" : "none";
+}

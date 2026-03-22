@@ -1,5 +1,5 @@
 import { getUnits } from "./api.js";
-import { populateDropdown, setActive } from "./ui.js";
+import { populateDropdown, setActive, toggleOperators} from "./ui.js";
 
 const state = {
   type: "length",
@@ -32,14 +32,6 @@ function clearError() {
   if (banner) {
     banner.remove();
   }
-}
-
-function toggleOperators(show) {
-  const row = document.getElementById("operationRow") || document.querySelector(".operator-row");
-  if (!row) {
-    return;
-  }
-  row.style.display = show ? "flex" : "none";
 }
 
 function populateUnitSelects(units) {
