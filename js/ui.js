@@ -21,6 +21,32 @@ export function populateDropdown(selectEl, units) {
   });
 }
 
+export function populateUnitDropdowns(fromSelect, toSelect, units) {
+  if (!fromSelect || !toSelect) {
+    return;
+  }
+  if (!units.length) {
+    populateDropdown(fromSelect, units);
+    populateDropdown(toSelect, units);
+    return;
+  }
+
+  const fill = (sel) => {
+    sel.innerHTML = "";
+    units.forEach((u) => {
+      const opt = document.createElement("option");
+      opt.value = u.symbol;
+      opt.textContent = `${u.label} (${u.symbol})`;
+      sel.appendChild(opt);
+    });
+  };
+
+  fill(fromSelect);
+  fill(toSelect);
+  fromSelect.value = units[0].symbol;
+  toSelect.value = units[1]?.symbol ?? units[0].symbol;
+}
+
 export function setActive(parentEl, clickedEl, childSelector) {
   if (!parentEl) {
     return;
@@ -40,7 +66,10 @@ export function showResult(value, unitSymbol) {
 
   if (!resultValueEl || !resultUnitEl) {
     if (resultInputEl) {
-      const text = value === null ? "—" : `${value}${unitSymbol ? ` ${unitSymbol}` : ""}`;
+      const text =
+        value === null || value === undefined
+          ? ""
+          : `${value}${unitSymbol ? ` ${unitSymbol}` : ""}`;
       resultInputEl.value = text;
     }
     return;

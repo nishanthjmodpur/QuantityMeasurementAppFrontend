@@ -33,24 +33,41 @@
     <div class="section-block">
       <h2 class="section-title">CHOOSE ACTION</h2>
       <div class="action-row">
-        <button class="action-btn active" data-action="Comparison">Comparison</button>
-        <button class="action-btn" data-action="Conversion">Conversion</button>
-        <button class="action-btn" data-action="Arithmetic">Arithmetic</button>
+        <button type="button" class="action-btn active" data-action="Comparison">Comparison</button>
+        <button type="button" class="action-btn" data-action="Conversion">Conversion</button>
+        <button type="button" class="action-btn" data-action="Arithmetic">Arithmetic</button>
       </div>
+    </div>
+
+    <div id="operator-selector" class="operator-selector" style="display: none">
+      <button type="button" class="op-btn active" data-op="+">+</button>
+      <button type="button" class="op-btn" data-op="-">−</button>
+      <button type="button" class="op-btn" data-op="*">×</button>
+      <button type="button" class="op-btn" data-op="/">÷</button>
     </div>
 
     <div class="converter-row">
       <div class="converter-card">
-        <div class="converter-label">FROM</div>
-        <input type="text" inputmode="numeric" id="inputValue" placeholder="Enter value">
+        <div class="converter-label" id="from-label">VALUE1</div>
+        <input type="text" inputmode="decimal" id="inputValue" placeholder="Enter value" autocomplete="off">
         <select id="fromUnit"></select>
       </div>
 
       <div class="converter-card">
-        <div class="converter-label">TO</div>
-        <input type="text" id="result" placeholder="Result" readonly>
+        <div class="converter-label" id="to-label">VALUE2</div>
+        <input type="text" inputmode="decimal" id="toValue" placeholder="Enter value" autocomplete="off">
         <select id="toUnit"></select>
       </div>
+    </div>
+
+    <div class="result-block">
+      <div class="converter-label">RESULT</div>
+      <input type="text" id="result" class="result-field" placeholder="Result" readonly>
+    </div>
+
+    <div class="section-block">
+      <h2 class="section-title">HISTORY</h2>
+      <ul id="history-list" class="history-list"></ul>
     </div>
 
   </section>

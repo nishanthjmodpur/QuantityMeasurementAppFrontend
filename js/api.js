@@ -1,4 +1,3 @@
-// const BASE_URL = "https://api.measurement.azaken.com";
 const BASE_URL = "http://localhost:3000";
 
 export async function getUnits(type) {
@@ -46,7 +45,7 @@ export async function saveHistory(record) {
 
 export async function getHistory() {
   try {
-    const res = await fetch(`${BASE_URL}/history?_sort=timestamp&_order=desc`);
+    const res = await fetch(`${BASE_URL}/history`);
     if (!res.ok) {
       throw new Error(`HTTP ${res.status}`);
     }

@@ -160,3 +160,64 @@ body {
   cursor: pointer;
   outline: none;
 }
+
+.result-block {
+  margin-bottom: 28px;
+  background: #f8f9fb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.result-field {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  color: #222;
+  outline: none;
+}
+
+.result-field::placeholder {
+  color: #aaa;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.operator-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+  justify-content: center;
+}
+
+.op-btn {
+  min-width: 44px;
+  padding: 10px 14px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #f8f9fb;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.op-btn.active {
+  background: #5b6abf;
+  color: white;
+  border-color: #5b6abf;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.history-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
